@@ -182,7 +182,8 @@ class NumericalSensors():
         sensors_num_df = sensors_num_df.pivot_table(
             index='last_changed', columns='entity', values='state')
 
-        sensors_num_df.index = pd.to_datetime(sensors_num_df.index)
+        #sensors_num_df.index = pd.to_datetime(sensors_num_df.index, utc=True)
+        sensors_num_df.index = pd.to_datetime(sensors_num_df.index, errors='ignore', utc=True
         sensors_num_df.index = sensors_num_df.index.tz_localize(None)
 
         # ffil data as triggered on events
@@ -270,7 +271,7 @@ class BinarySensors():
             index='last_changed', columns='entity', values='state')
 
         # Index to datetime
-        binary_df.index = pd.to_datetime(binary_df.index)
+        binary_df.index = pd.to_datetime(binary_df.index, utc=True)
         binary_df.index = binary_df.index.tz_localize(None)
 
         self._binary_df = binary_df.copy()
