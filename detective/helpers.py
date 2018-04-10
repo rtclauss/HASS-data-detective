@@ -6,10 +6,10 @@ import json
 
 def binary_state(value):
     """Return a binary for the state of binary sensors"""
-    if value == 'on':
-        return True
-    elif value == 'off':
-        return False
+    if value == 'on' or value == True:
+        return 1.0
+    elif value == 'off' or value == False:
+        return 0.0
     else:
         return float('nan')
 
